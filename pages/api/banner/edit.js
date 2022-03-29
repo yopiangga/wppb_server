@@ -1,4 +1,4 @@
-import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { getFirestore, updateDoc, doc } from "firebase/firestore";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -6,16 +6,11 @@ export default async function handler(req, res) {
     const date = new Date();
     const time = date.getTime();
 
-    const result = await setDoc(doc(db, "tourism", time.toString()), {
+    return await updateDoc(doc(db, "banner", req.body.id), {
       title: req.body.title ?? "",
       location: req.body.location ?? "",
       imageUrl: req.body.imageUrl ?? "",
-      distance: req.body.distance ?? "",
-      weather: req.body.weather ?? "",
-      price: req.body.price ?? "",
-      description: req.body.description ?? "",
     });
-    res.status(200).json("Oke Tambah");
   } else {
     res.status(200).json(null);
   }

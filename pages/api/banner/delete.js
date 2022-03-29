@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const db = getFirestore();
 
-    const docRef = doc(db, "tourism", uid);
+    const docRef = doc(db, "banner", uid);
     const result = await deleteDoc(docRef);
 
     if (result) {

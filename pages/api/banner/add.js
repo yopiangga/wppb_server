@@ -6,14 +6,10 @@ export default async function handler(req, res) {
     const date = new Date();
     const time = date.getTime();
 
-    const result = await setDoc(doc(db, "tourism", time.toString()), {
+    const result = await setDoc(doc(db, "banner", time.toString()), {
       title: req.body.title ?? "",
       location: req.body.location ?? "",
       imageUrl: req.body.imageUrl ?? "",
-      distance: req.body.distance ?? "",
-      weather: req.body.weather ?? "",
-      price: req.body.price ?? "",
-      description: req.body.description ?? "",
     });
     res.status(200).json("Oke Tambah");
   } else {
