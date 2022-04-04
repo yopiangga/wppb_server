@@ -15,8 +15,9 @@ export default async function handler(req, res) {
       price: req.body.price ?? "",
       description: req.body.description ?? "",
     });
-    res.status(200).json("Oke Tambah");
+
+    res.status(200).json({ data: time.toString(), message: "Oke" });
   } else {
-    res.status(200).json(null);
+    res.status(200).json("Gagal nambah");
   }
 }

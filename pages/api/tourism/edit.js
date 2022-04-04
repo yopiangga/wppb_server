@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const date = new Date();
     const time = date.getTime();
 
-    return await updateDoc(doc(db, "tourism", req.body.id), {
+    const result =  await updateDoc(doc(db, "tourism", req.body.id), {
       title: req.body.title ?? "",
       location: req.body.location ?? "",
       imageUrl: req.body.imageUrl ?? "",
@@ -15,6 +15,11 @@ export default async function handler(req, res) {
       price: req.body.price ?? "",
       description: req.body.description ?? "",
     });
+    if (result) {
+      res.status(200).json({ data: "success" });
+    } else {
+      res.status(200).json({ data: "fail" });
+    }
   } else {
     res.status(200).json(null);
   }
